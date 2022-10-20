@@ -192,6 +192,7 @@ debug.cpurend.vsync=false
 
 # Disable vsync for cpu rendered apps
 debug.cpurend.vsync=false
+debug.sdm.support_writeback=0
 
 # DRM
 drm.service.enabled=true
