@@ -347,7 +347,8 @@ PRODUCT_PACKAGES += \
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl-xiaomi \
-    android.hardware.sensors@1.0-service
+    android.hardware.sensors@1.0-service \
+    SensorService
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
