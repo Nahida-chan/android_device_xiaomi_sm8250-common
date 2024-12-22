@@ -100,10 +100,6 @@ TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8250
 # Kernel Clang Flags
 KERNEL_CC := CC=clang
 override KERNEL_TOOLCHAIN_PREFIX_arm := arm-linux-android-
-TARGET_KERNEL_CONFIG := \
-    vendor/kona-perf_defconfig \
-    vendor/debugfs.config \
-    vendor/xiaomi/sm8250-common.config
 
 # Media
 TARGET_USES_ION := true
