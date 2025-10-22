@@ -278,7 +278,6 @@ DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay-lineage
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += $(LOCAL_PATH)/overlay/packages/apps/CarrierConfig
 
 # Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
@@ -309,6 +308,9 @@ PRODUCT_PACKAGES += \
 
 # Recovery
 $(call soong_config_set_bool,recovery,target_recovery_uses_qti_drm,true)
+
+PRODUCT_PACKAGES += \
+    CarrierConfigKona
 
 # Rootdir
 PRODUCT_PACKAGES += \
