@@ -144,6 +144,9 @@ $(foreach p, $(call to-upper, $(ALL_PARTITIONS)), \
     $(eval BOARD_$(p)IMAGE_FILE_SYSTEM_TYPE := ext4) \
     $(eval TARGET_COPY_OUT_$(p) := $(call to-lower, $(p))))
 
+$(foreach p, $(call to-upper, $(TREBLE_PARTITIONS)), \
+    $(eval BOARD_$(p)IMAGE_PARTITION_RESERVED_SIZE := 30720000))
+
 # Partitions - dynamic
 BOARD_SUPER_PARTITION_SIZE := 9126805504
 BOARD_SUPER_PARTITION_GROUPS := qti_dynamic_partitions
@@ -152,8 +155,6 @@ BOARD_QTI_DYNAMIC_PARTITIONS_SIZE := 9122611200 # (BOARD_SUPER_PARTITION_SIZE - 
 
 # Partitions - reserved size
 -include vendor/lineage/config/BoardConfigReservedSize.mk
-$(foreach p, $(call to-upper, $(TREBLE_PARTITIONS)), \
-    $(eval BOARD_$(p)IMAGE_PARTITION_RESERVED_SIZE := 30720000))
 
 ifneq ($(WITH_GMS),true)
 BOARD_PRODUCTIMAGE_EXTFS_INODE_COUNT ?= -1
@@ -252,11 +253,12 @@ endif
 
 # VINTF
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-    $(COMMON_PATH)/configs/vintf/framework_compatibility_dolby.xml \
     $(COMMON_PATH)/configs/vintf/framework_compatibility_matrix.xml \
+    $(COMMON_PATH)/configs/vintf/framework_compatibility_dolby.xml \
     $(COMMON_PATH)/configs/vintf/device_framework_matrix.xml \
-    hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
-    hardware/xiaomi/vintf/xiaomi_framework_compatibility_matrix.xml
+    $(COMMON_PATH)/configs/vintf/xiaomi_framework_compatibility_matrix.xml \
+    hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml
+
 DEVICE_MANIFEST_FILE += $(COMMON_PATH)/configs/vintf/manifest.xml
 ifneq ($(TARGET_IS_TABLET),true)
 DEVICE_MANIFEST_FILE += $(COMMON_PATH)/configs/vintf/manifest_phone.xml
